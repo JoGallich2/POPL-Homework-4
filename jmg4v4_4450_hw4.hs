@@ -34,7 +34,7 @@ func_1b x = x * 2
 
 -- 4pts
 func_1c :: [(String, Int)] -> (String, Int)
-func_1c = undefined
+func_1c xs =  xs head
 
 -- 3pts
 func1_d :: [a] -> a
@@ -42,11 +42,11 @@ func1_d = head
 
 -- 2pts
 func_1e :: (a, b, c) -> b
-func_1e = undefined
+func_1e (_, y, _) = y
 
 -- 3pts
 func_1f :: [a] -> [b] -> Bool
-func_1f = undefined
+func_1f xs ys = null xs && null ys
 
 -- 3pts
 func_1g :: (Integer -> Integer -> Integer) -> Integer -> Integer -> Integer
