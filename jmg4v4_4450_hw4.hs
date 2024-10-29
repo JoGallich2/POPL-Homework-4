@@ -6,7 +6,6 @@
 
 -}
 
-
 ------------------------------------------------
 --                                            --
 --               Part One: Types              --
@@ -26,15 +25,15 @@
 
 -- 2pts
 func_1a :: [[Char]]
-func_1a = ["Hello", "World", "This", "Is" ,"Haskell"]
+func_1a = ["Hello", "World", "This", "Is", "Haskell"]
 
 -- 3pts
 func_1b :: Int -> Int
-func_1b x = x * 2 
+func_1b x = x * 2 -- Takes an integer and returns 2 times that value
 
 -- 4pts
 func_1c :: [(String, Int)] -> (String, Int)
-func_1c xs =  xs head
+func_1c xs = head xs
 
 -- 3pts
 func1_d :: [a] -> a
@@ -46,11 +45,11 @@ func_1e (_, y, _) = y
 
 -- 3pts
 func_1f :: [a] -> [b] -> Bool
-func_1f xs ys = null xs && null ys
+func_1f xs ys = null xs && null ys -- If both lists are empty it returns true
 
 -- 3pts
 func_1g :: (Integer -> Integer -> Integer) -> Integer -> Integer -> Integer
-func_1g f x1 x2 = undefined
+func_1g f x1 x2 = f x1 x2 -- Applies the function given f to the integer values x1 and x2
 
 ------------------------------------------------
 --                                            --
@@ -96,7 +95,6 @@ func_1g f x1 x2 = undefined
 --  Use the above functions to achieve the specified goals.
 --  For each function write its type signature if not present.
 
-
 -- Problem 2A. Write a function that takes a list and puts the last two elements
 --             at the front of the list, in their original order. For lists of size
 --             one, return the original list. For empty lists, return the empty list.
@@ -113,12 +111,9 @@ func_1g f x1 x2 = undefined
 -- PUT THE LAST TWO LIST ELEMENTS AT THE FRONT OF THE LIST
 -- 4 pts
 func_2a :: [a] -> [a]
-func_2a as = undefined
-
-
-
-
-
+func_2a [] = []
+func_2a [x] = [x]
+func_2a as = let n = length as in drop (n - 2) as ++ take (n - 2) as
 
 -- Problem 2B. Write a function that identifies the second to last item of a list, and
 --             returns a list of the size of the input list but only populated by the identified item.
@@ -134,15 +129,13 @@ func_2a as = undefined
 --      OUTPUT: "ERROR"
 --
 
-
 -- RETURN A LIST OF THE SAME SIZE AS THE INPUT LIST BUT ONLY POPULATED BY THE IDENTIFIED ITEM
 -- 4 pts
 func_2b :: [a] -> [a]
 func_2b [] = error "error"
-func_2b as = undefined
+func_2b as = replicate (length as) (as !! (length as - 2))
 
-
--- -- -- 
+-- -- --
 -- Problem 2C. Write a function that takes in a list of integers and returns a list containing,
 --             the integer parts (whole numbers) of the square roots of each integer in the input list.
 --             You can use any helper functions if you like to.
@@ -162,15 +155,7 @@ func_2b as = undefined
 -- RETURN LIST of integer parts of the square roots of each integer in the input list
 -- 4 pts
 func_2c :: [Integer] -> [Integer]
-func_2c d = undefined
-
-
-
-
-
-
-
-
+func_2c ds = [floor (sqrt (fromIntegral d)) | d <- ds, d >= 0]
 
 -- Problem 2D. Write a function that takes a list of integers, and returns a list where each
 --             element in the list is the cumulative sum of the elements up to that index.
@@ -189,15 +174,9 @@ func_2c d = undefined
 
 -- FOR A LIST OF INTEGERS WHERE EACH ELEMENT IS A CUMULATIVE SUM OF THE LIST ITEMS BEFORE IT, []
 -- 4 pts
-func_2d = undefined
-
-
-
-
-
-
-
-
+func_2d :: [Int] -> [Int]
+func_2d [] = error "error"
+func_2d as = tail (scanl (+) 0 as)
 
 -- Problem 2E. Write a function func_2e that checks if a given string or integer is a palindrome.
 --
@@ -211,16 +190,8 @@ func_2d = undefined
 
 -- 4 pts
 -- func_2e :: ?????
-func_2e = undefined
-
-
-
-
-
-
-
-
-
+func_2e :: (Eq a) => [a] -> Bool
+func_2e as = as == reverse as
 
 ------------------------------------------------
 --                                            --
@@ -231,9 +202,9 @@ func_2e = undefined
 
 -- Problem 3A. Write a function, func_3a
 --          that takes a String, str, and an Integer, n,
---          then performs n rotations on str. 
---          If the integer n is positive, it performs n right rotations on the string. 
---          If the integer n is negative, it performs n left rotations on the string. 
+--          then performs n rotations on str.
+--          If the integer n is positive, it performs n right rotations on the string.
+--          If the integer n is negative, it performs n left rotations on the string.
 --          If the integer n is 0, it returns the string without rotations.
 --          Uncomment and fill in the type signature as well.
 --
@@ -248,15 +219,13 @@ func_2e = undefined
 --      OUTPUT: "lo Haskell!Hel"
 --
 
-
 --   IMPLEMENT A FUNCTION THAT ROTATES STRINGS LEFT OR RIGHT  --
 --       10 pts        --
 
 func_3a :: String -> Integer -> String
 -- func_3a :: [Char] -> Integer -> [Char]
-func_3a [] _  = []
+func_3a [] _ = []
 func_3a str n = []
-
 
 ------------------------------------------------
 --                                            --
@@ -266,7 +235,7 @@ func_3a str n = []
 ------------------------------------------------
 
 -- Problem 4A. Write a function, func_4a
---          that 
+--          that
 --          1. takes a positive Integer, n
 --          2. converts it into its binary equivalent value giving a list of 1s and 0s
 --          3. reverses the binary list
@@ -278,7 +247,7 @@ func_3a str n = []
 --
 --  ex:
 --      INPUT: func_4a 10
---      Intermediate steps: Binary of 10 is [1, 0, 1, 0] 
+--      Intermediate steps: Binary of 10 is [1, 0, 1, 0]
 --      		-> reversed is [0, 1, 0, 1] -> integer equivalent of this is 5.
 --      OUTPUT: 5
 --  ex:
@@ -286,10 +255,7 @@ func_3a str n = []
 --      OUTPUT: "error"
 --
 
-
 --   IMPLEMENT A FUNCTION THAT CONVERTS INT -> BINARY -> REVERSE BINARY -> INT  --
 --       5 pts (-1 for not handling negatives)        --
 
-func_4a = undefined 
-
-
+func_4a = undefined
