@@ -26,11 +26,11 @@
 
 -- 2pts
 func_1a :: [[Char]]
-func_1a = undefined
+func_1a = ["Hello", "World", "This", "Is" ,"Haskell"]
 
 -- 3pts
 func_1b :: Int -> Int
-func_1b x = undefined
+func_1b x = x * 2 
 
 -- 4pts
 func_1c :: [(String, Int)] -> (String, Int)
