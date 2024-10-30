@@ -113,7 +113,9 @@ func_1g f x1 x2 = f x1 x2 -- Applies the function given f to the integer values 
 func_2a :: [a] -> [a]
 func_2a [] = []
 func_2a [x] = [x]
-func_2a as = let n = length as in drop (n - 2) as ++ take (n - 2) as
+func_2a as = let n = length as 
+             in drop (n - 2) as 
+             ++ take (n - 2) as
 
 -- Problem 2B. Write a function that identifies the second to last item of a list, and
 --             returns a list of the size of the input list but only populated by the identified item.
@@ -133,7 +135,8 @@ func_2a as = let n = length as in drop (n - 2) as ++ take (n - 2) as
 -- 4 pts
 func_2b :: [a] -> [a]
 func_2b [] = error "error"
-func_2b as = replicate (length as) (as !! (length as - 2))
+func_2b as = replicate (length as) 
+             (as !! (length as - 2))
 
 -- -- --
 -- Problem 2C. Write a function that takes in a list of integers and returns a list containing,
